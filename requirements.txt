@@ -1,0 +1,10 @@
+pennylane>=0.32.0
+matplotlib>=3.5.0
+scipy>=1.8.0
+numpy>=1.21.0
+jupyter>=1.0.0
+
+# Optional quantum hardware support
+# pennylane-qiskit>=0.32.0
+# pennylane-cirq>=0.32.0
+# pennylane-ionq>=0.32.0
