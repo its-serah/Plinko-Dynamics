@@ -4,6 +4,10 @@ scipy>=1.8.0
 numpy>=1.21.0
 jupyter>=1.0.0
 
+# AI/ML dependencies
+torch>=1.9.0
+torchdiffeq>=0.2.0
+
 # Optional quantum hardware support
 # pennylane-qiskit>=0.32.0
 # pennylane-cirq>=0.32.0
