@@ -1,4 +1,4 @@
-# 🎯 Plinko Dynamics v2.0
+# Plinko Dynamics v2.0
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://python.org)
 [![PennyLane](https://img.shields.io/badge/PennyLane-0.32%2B-orange.svg)](https://pennylane.ai)
@@ -9,33 +9,33 @@
 
 A sophisticated, modular Python package for simulating quantum Galton boards (Plinko) with beautiful visualizations, comprehensive error handling, and AI-powered trajectory analysis.
 
-## ✨ Features
+## Features
 
-### 🔮 Quantum Simulation
+### Quantum Simulation
 - **Multiple Circuit Types**: Gaussian, exponential, and Hadamard quantum walks
 - **Robust Error Handling**: Comprehensive validation and logging
 - **Hardware Ready**: Compatible with quantum hardware backends
 - **Scalable Architecture**: Efficient for large-scale simulations
 
-### 🎨 Beautiful Visualizations
+### Beautiful Visualizations
 - **Purple & Navy Theme**: Stunning color schemes for professional presentations
 - **Interactive Plots**: Comprehensive analysis dashboards
 - **Publication Ready**: High-DPI exports for papers and reports
 - **Real-time Updates**: Dynamic visualization capabilities
 
-### 🤖 AI-Enhanced Analysis
+### AI-Enhanced Analysis
 - **Neural ODEs**: Advanced trajectory modeling with torchdiffeq
 - **Latent Space Learning**: Compact representation of quantum dynamics
 - **Predictive Models**: Forecast distribution evolution
 - **Robust Training**: Gradient clipping and advanced optimization
 
-### 📊 Comprehensive Metrics
+### Comprehensive Metrics
 - **Statistical Analysis**: 12+ distance measures and overlap metrics
 - **Performance Comparison**: Circuit ranking and optimization guidance
 - **Time Series Analysis**: Trajectory stability and convergence metrics
 - **Quantum Advantage**: Specialized quantum vs classical comparisons
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
@@ -84,13 +84,13 @@ python3 demo_enhanced.py
 ```
 
 This will generate:
-- 🔮 Quantum circuit performance analysis
-- ⚔️ Quantum vs classical comparisons  
-- 🎨 Beautiful Plinko board visualizations
-- 🤖 AI trajectory evolution analysis
-- 📊 Comprehensive metrics reports
+- Quantum circuit performance analysis
+- Quantum vs classical comparisons  
+- Beautiful Plinko board visualizations
+- AI trajectory evolution analysis
+- Comprehensive metrics reports
 
-## 🏗️ Architecture
+## Architecture
 
 ### Modular Design
 
@@ -111,31 +111,31 @@ plinko_dynamics/
 
 ### Key Components
 
-#### 🔮 QuantumGaltonBoard
+#### QuantumGaltonBoard
 - Robust quantum circuit implementation
 - Multiple distribution types
 - Comprehensive error handling
 - Hardware backend compatibility
 
-#### 🎨 PlinkoDynamicsVisualizer  
+#### PlinkoDynamicsVisualizer
 - Purple & navy color themes
 - Publication-ready plots
 - Interactive dashboards
 - Real-time visualization
 
-#### 🤖 QuantumGaltonAI
+#### QuantumGaltonAI
 - Neural ODE trajectory modeling
 - Latent space representation
 - Predictive capabilities
 - Robust training pipeline
 
-#### 📊 DistributionMetrics
+#### DistributionMetrics
 - 12+ distance measures
 - Statistical hypothesis testing
 - Quantum advantage analysis
 - Time series evaluation
 
-## 🎯 Advanced Usage
+## Advanced Usage
 
 ### AI Trajectory Analysis
 
@@ -199,7 +199,7 @@ fig = visualizer.plot_trajectory_evolution(
 )
 ```
 
-## 🔧 Configuration & Error Handling
+## Configuration & Error Handling
 
 The package includes comprehensive error handling and logging:
 
@@ -235,17 +235,17 @@ ai_model = QuantumGaltonAI(
 visualizer = PlinkoDynamicsVisualizer(theme='purple_navy')
 ```
 
-## 📈 What's New in v2.0
+## What's New in v2.0
 
-✅ **Complete Modular Rewrite**: Clean, maintainable architecture  
-✅ **Beautiful Purple/Navy Visualizations**: Professional color themes  
-✅ **Comprehensive Error Handling**: Robust validation and logging  
-✅ **Enhanced AI Models**: Improved training stability and performance  
-✅ **Advanced Metrics**: 12+ statistical distance measures  
-✅ **Publication Ready**: High-quality plots and documentation  
-✅ **Hardware Compatible**: Ready for quantum devices  
+- **Complete Modular Rewrite**: Clean, maintainable architecture  
+- **Beautiful Purple/Navy Visualizations**: Professional color themes  
+- **Comprehensive Error Handling**: Robust validation and logging  
+- **Enhanced AI Models**: Improved training stability and performance  
+- **Advanced Metrics**: 12+ statistical distance measures  
+- **Publication Ready**: High-quality plots and documentation  
+- **Hardware Compatible**: Ready for quantum devices
 
-## 🐛 Common Issues & Solutions
+## Common Issues & Solutions
 
 ### Installation Issues
 ```bash
@@ -272,7 +272,7 @@ import matplotlib
 matplotlib.use('Agg')  # For headless systems
 ```
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Here's how to get started:
 
@@ -302,7 +302,7 @@ isort plinko_dynamics/
 - **Testing**: Unit tests for all major components
 - **Logging**: Structured logging throughout
 
-## 📚 Examples
+## Examples
 
 Check out these examples to get started:
 
@@ -312,7 +312,7 @@ Check out these examples to get started:
 - **Custom Visualizations**: `examples/visualization_gallery.py`
 - **Metrics Analysis**: `examples/statistical_analysis.py`
 
-## 🔮 Future Roadmap
+## Future Roadmap
 
 ### Version 2.1 (Next Release)
 - [ ] Real-time visualization dashboard
@@ -326,7 +326,7 @@ Check out these examples to get started:
 - [ ] Advanced quantum error correction
 - [ ] Machine learning circuit design
 
-## 📊 Performance Benchmarks
+## Performance Benchmarks
 
 ### Quantum Simulation
 - **Small circuits** (≤4 layers): ~0.1s per simulation
@@ -341,11 +341,11 @@ Check out these examples to get started:
 - **Static plots**: ~0.5s generation
 - **Interactive dashboards**: ~2s generation
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **PennyLane Team** - Excellent quantum computing framework
 - **PyTorch Team** - Deep learning infrastructure
@@ -353,14 +353,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **SciPy Community** - Statistical analysis tools
 - **Quantum Computing Community** - Inspiration and feedback
 
-## 📞 Support & Contact
+## Support & Contact
 
-- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/its-serah/Plinko-Dynamics/issues)
-- 💡 **Feature Requests**: [GitHub Discussions](https://github.com/its-serah/Plinko-Dynamics/discussions)
-- 📧 **Questions**: Open an issue for support
-- 💬 **Discussions**: Join our community discussions
+- **Bug Reports**: [GitHub Issues](https://github.com/its-serah/Plinko-Dynamics/issues)
+- **Feature Requests**: [GitHub Discussions](https://github.com/its-serah/Plinko-Dynamics/discussions)
+- **Questions**: Open an issue for support
+- **Discussions**: Join our community discussions
 
-## 🏆 Recognition
+## Recognition
 
 This project demonstrates the elegant intersection of:
 - **Quantum Computing** - Leveraging quantum superposition and interference
@@ -371,10 +371,10 @@ This project demonstrates the elegant intersection of:
 ---
 
 <div align="center">
-  <p><strong>🎯 Built with ❤️ for the quantum computing community</strong></p>
+  <p><strong>Built for the quantum computing community</strong></p>
   <p><em>Making quantum simulations beautiful, robust, and accessible</em></p>
   
   <br>
   
-  **🌟 If you find this project helpful, please consider giving it a star! 🌟**
+  <p><strong>If you find this project helpful, please consider giving it a star!</strong></p>
 </div>
