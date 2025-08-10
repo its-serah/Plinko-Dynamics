@@ -5,7 +5,14 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Active-brightgreen.svg)]()
 
-**Advanced Quantum Galton Board Simulation with AI-Enhanced Analysis**
+
+# Team Members
+- **Sarah Rashidi**:  gst-Hp9AXRvC2Scd65A
+- **Elena Bresta**:   gst-uAhuv0ZAs1mBqiq
+- **Krishang Gupta**: gst-QwPcAHbHcHFGkF2 
+
+
+## Advanced Quantum Galton Board Simulation with AI-Enhanced Analysis
 
 A sophisticated, modular Python package for simulating quantum Galton boards (Plinko) with beautiful visualizations, comprehensive error handling, and AI-powered trajectory analysis.
 
