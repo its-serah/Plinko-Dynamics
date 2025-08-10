@@ -199,7 +199,7 @@ class QuantumGaltonBoard:
                         m = qml.measure(wires=0)
                         qml.cond(m, qml.PauliX)(wires=0)
                     
-                    # Use Hadamard gate for equal probability
+                    # Use Hadamard gate for equal superposition
                     qml.Hadamard(wires=0)
                     
                     start = max(1, self.half - layer)
@@ -215,25 +215,28 @@ class QuantumGaltonBoard:
                 
                 return qml.sample(wires=self.measure_qubits)
             except Exception as e:
-                logger.error(f"Error in Hadamard walk circuit execution: {e}")
+                logger.error(f"Error in Hadamard walk circuit: {e}")
                 raise
         
         return circuit
     
-    def run_simulation(self, circuit_type: str = "gaussian", **kwargs) -> np.ndarray:
+    def run_simulation(self, 
+                      circuit_type: str = "gaussian",
+                      noise_prob: Optional[float] = None,
+                      **kwargs) -> np.ndarray:
         """
-        Run the quantum simulation.
+        Run a quantum simulation with specified circuit type.
         
         Args:
-            circuit_type: Type of circuit ("gaussian", "exponential", "hadamard")
+            circuit_type: Type of circuit ('gaussian', 'exponential', 'hadamard')
+            noise_prob: Optional noise probability for noisy simulation
             **kwargs: Additional parameters for specific circuit types
             
         Returns:
-            Array of measurement results
+            Array of sampled bin positions
             
         Raises:
-            ValueError: If unknown circuit type is specified
-            RuntimeError: If simulation execution fails
+            ValueError: If circuit type is unknown
         """
         circuit_map = {
             "gaussian": self.create_gaussian_circuit,
@@ -243,62 +246,102 @@ class QuantumGaltonBoard:
         
         if circuit_type not in circuit_map:
             raise ValueError(f"Unknown circuit type: {circuit_type}. "
-                           f"Available types: {list(circuit_map.keys())}")
+                           f"Choose from {list(circuit_map.keys())}")
         
-        try:
-            # Create circuit with appropriate parameters
-            if circuit_type == "gaussian":
-                circuit = circuit_map[circuit_type](kwargs.get('rotation_angle', 0.26 * np.pi))
-            elif circuit_type == "exponential":
-                circuit = circuit_map[circuit_type](kwargs.get('decay_rate', 2.0))
-            else:
-                circuit = circuit_map[circuit_type]()
+        # Create circuit with appropriate parameters
+        if circuit_type == "gaussian":
+            circuit = circuit_map[circuit_type](
+                rotation_angle=kwargs.get("rotation_angle", 0.26 * np.pi)
+            )
+        elif circuit_type == "exponential":
+            circuit = circuit_map[circuit_type](
+                decay_rate=kwargs.get("decay_rate", 2.0)
+            )
+        else:
+            circuit = circuit_map[circuit_type]()
+        
+        # Run circuit and get samples
+        samples = circuit()
+        
+        # Convert to bin positions
+        bin_positions = np.sum(samples, axis=1)
+        
+        # Apply noise if specified
+        if noise_prob is not None and noise_prob > 0:
+            bin_positions = self._apply_noise(bin_positions, noise_prob)
+        
+        return bin_positions
+    
+    def _apply_noise(self, samples: np.ndarray, noise_prob: float) -> np.ndarray:
+        """
+        Apply noise to simulation results.
+        
+        Args:
+            samples: Original samples
+            noise_prob: Probability of noise
             
-            # Execute circuit
-            samples = circuit()
-            logger.info(f"Successfully executed {circuit_type} simulation with {len(samples)} samples")
-            return samples
-            
-        except Exception as e:
-            logger.error(f"Simulation failed for {circuit_type}: {e}")
-            raise RuntimeError(f"Simulation execution failed: {e}")
+        Returns:
+            Noisy samples
+        """
+        noisy_samples = samples.copy()
+        noise_mask = np.random.random(len(samples)) < noise_prob
+        
+        # Add random displacement to noisy samples
+        max_bin = self.n_layers
+        noise_values = np.random.choice([-1, 0, 1], size=np.sum(noise_mask))
+        noisy_samples[noise_mask] += noise_values
+        
+        # Clip to valid range
+        noisy_samples = np.clip(noisy_samples, 0, max_bin)
+        
+        return noisy_samples
     
     def get_probability_distribution(self, samples: np.ndarray) -> np.ndarray:
         """
-        Convert measurement samples to probability distribution.
+        Convert samples to probability distribution.
         
         Args:
-            samples: Raw measurement samples
+            samples: Array of sampled bin positions
             
         Returns:
-            Probability distribution array
-            
-        Raises:
-            ValueError: If samples array is invalid
+            Normalized probability distribution
         """
-        if samples is None or len(samples) == 0:
-            raise ValueError("Samples array cannot be empty")
-            
-        try:
-            # Sum across shots to get bin counts
-            if samples.ndim == 1:
-                # Single measurement case
-                total = samples
-            else:
-                # Multiple measurements case
-                total = np.sum(samples, axis=0)
-            
-            # Normalize to get probabilities
-            prob_dist = total / self.n_shots
-            
-            # Ensure probabilities sum to approximately 1
-            total_prob = np.sum(prob_dist)
-            if not np.isclose(total_prob, 1.0, atol=0.1):
-                warnings.warn(f"Probability distribution sums to {total_prob}, expected ~1.0")
-            
-            return prob_dist
-        except Exception as e:
-            raise ValueError(f"Failed to compute probability distribution: {e}")
+        n_bins = self.n_layers + 1
+        distribution = np.zeros(n_bins)
+        
+        for sample in samples:
+            if 0 <= sample < n_bins:
+                distribution[int(sample)] += 1
+        
+        # Normalize
+        distribution = distribution / len(samples)
+        
+        return distribution
+    
+    def get_circuit_metrics(self) -> Dict[str, Any]:
+        """
+        Get circuit complexity metrics.
+        
+        Returns:
+            Dictionary containing circuit metrics
+        """
+        # Estimate circuit complexity
+        n_cswap = self.n_layers * (self.n_layers + 1) // 2
+        n_cnot = n_cswap
+        n_single_qubit = self.n_layers * 2  # RX/H gates and PauliX
+        
+        metrics = {
+            "n_gates": n_cswap + n_cnot + n_single_qubit,
+            "n_cswap_gates": n_cswap,
+            "n_cnot_gates": n_cnot,
+            "n_single_qubit_gates": n_single_qubit,
+            "circuit_depth": self.n_layers * 4,  # Approximate depth
+            "n_qubits": self.n_wires,
+            "n_parameters": self.n_layers,  # Rotation angles
+            "n_layers": self.n_layers
+        }
+        
+        return metrics
     
     def get_circuit_info(self, circuit_type: str = "gaussian") -> Dict[str, Any]:
         """
