@@ -1,20 +1,64 @@
-# Plinko Dynamics v2.0
+# Plinko Dynamics v2.0: Quantum Galton Board Implementation
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://python.org)
 [![PennyLane](https://img.shields.io/badge/PennyLane-0.32%2B-orange.svg)](https://pennylane.ai)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Active-brightgreen.svg)]()
+[![Womanium](https://img.shields.io/badge/Womanium-2025-purple.svg)]()
 
 **Advanced Quantum Galton Board Simulation with AI-Enhanced Analysis**
 
-A sophisticated, modular Python package for simulating quantum Galton boards (Plinko) with beautiful visualizations, comprehensive error handling, and AI-powered trajectory analysis.
+A sophisticated, modular Python package implementing a quantum version of the Galton Board (Plinko) using quantum circuits to simulate complex statistical systems. This project demonstrates the Universal Statistical Simulator approach for quantum Monte Carlo problems, with potential applications in particle transport, quantum systems, and high-dimensional statistical challenges.
+
+> Part of the Womanium & WISER 2025 Quantum Program - Quantum Walks and Monte Carlo challenge
+
+## Project Overview
+
+This implementation addresses all 5 project deliverables for the Quantum Galton Board challenge:
+
+### 📊 [View Project Presentation](https://www.canva.com/design/DAGvrJaPse0/Muqw5_55QLHPp_oLwRpCEA/view?utm_content=DAGvrJaPse0&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hf72ad4484e)
+
+### Project Deliverables ✅
+
+1. **Two-Page Summary Document**
+   - File: `project_summary.md`
+   - Comprehensive understanding of quantum Galton board implementation
+   - Technical background and applications
+   - Circuit structure and algorithm explanation
+
+2. **General Algorithm Implementation**
+   - File: `quantum_galton_board.py`
+   - General algorithm that generates circuits for any number of layers
+   - Verified Gaussian distribution output
+   - Scalable implementation supporting multiple layer configurations
+
+3. **Different Target Distributions**
+   - **Gaussian Distribution**: Standard binomial approximation
+   - **Exponential Distribution**: Modified rotation angles for exponential decay
+   - **Hadamard Quantum Walk**: Equal probability quantum walk implementation
+
+4. **Noise Model Optimization**
+   - Framework for implementing noise models from real hardware
+   - Optimization strategies for maximizing accuracy and layer count
+   - Error mitigation techniques outlined
+
+5. **Distance Metrics and Uncertainty Analysis**
+   - Multiple distance metrics: MSE, KL-divergence, Total Variation, Chi-squared
+   - Statistical uncertainty calculations accounting for shot noise
+   - Comprehensive comparison framework
 
 ## Features
 
 ### Quantum Simulation
 - **Multiple Circuit Types**: Gaussian, exponential, and Hadamard quantum walks
+- **Universal Statistical Simulator**: Implementation of quantum Monte Carlo methods
+- **Quantum Circuit Architecture**:
+  - Control System: RX rotation gates for probabilistic control
+  - Position Tracking: CSWAP gates for conditional state swapping
+  - Entanglement: CNOT gates for quantum correlations
+  - Measurement: Efficient sampling from final distributions
 - **Robust Error Handling**: Comprehensive validation and logging
-- **Hardware Ready**: Compatible with quantum hardware backends
+- **Hardware Ready**: Compatible with quantum hardware backends (IBM, Google, IonQ)
 - **Scalable Architecture**: Efficient for large-scale simulations
 
 ### Beautiful Visualizations
@@ -25,8 +69,11 @@ A sophisticated, modular Python package for simulating quantum Galton boards (Pl
 
 ### AI-Enhanced Analysis
 - **Neural ODEs**: Advanced trajectory modeling with torchdiffeq
+- **Latent ODE Models**: Learning quantum dynamics from simulation data
+- **Trajectory Learning**: AI models trained on quantum simulation data
+- **Predictive Analysis**: AI-powered prediction of quantum distributions
+- **Parameter Optimization**: Machine learning for circuit parameter tuning
 - **Latent Space Learning**: Compact representation of quantum dynamics
-- **Predictive Models**: Forecast distribution evolution
 - **Robust Training**: Gradient clipping and advanced optimization
 
 ### Comprehensive Metrics
@@ -34,6 +81,13 @@ A sophisticated, modular Python package for simulating quantum Galton boards (Pl
 - **Performance Comparison**: Circuit ranking and optimization guidance
 - **Time Series Analysis**: Trajectory stability and convergence metrics
 - **Quantum Advantage**: Specialized quantum vs classical comparisons
+
+## Resources & Documentation
+
+- 📊 **[Interactive Presentation](https://www.canva.com/design/DAGvrJaPse0/Muqw5_55QLHPp_oLwRpCEA/view?utm_content=DAGvrJaPse0&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hf72ad4484e)** - Visual overview of the project
+- 📝 **[Technical Summary](project_summary.md)** - Detailed technical documentation
+- 🔬 **[Demo Notebook](demo_notebook.ipynb)** - Interactive quantum simulations
+- 🤖 **[AI Integration](ai_integration_notebook.ipynb)** - Machine learning examples
 
 ## Quick Start
 
@@ -44,8 +98,15 @@ A sophisticated, modular Python package for simulating quantum Galton boards (Pl
 git clone https://github.com/its-serah/Plinko-Dynamics.git
 cd Plinko-Dynamics
 
-# Install dependencies
+# Install core dependencies
+pip install pennylane matplotlib scipy numpy
+
+# Install all dependencies
 pip install -r requirements.txt
+
+# Optional: Quantum hardware support
+pip install pennylane-qiskit  # For IBM quantum devices
+pip install pennylane-cirq    # For Google quantum devices
 
 # Install in development mode (recommended)
 pip install -e .
@@ -92,21 +153,33 @@ This will generate:
 
 ## Architecture
 
-### Modular Design
+### Project Structure
 
 ```
-plinko_dynamics/
-├── core/                   # Core simulation engines
-│   ├── quantum_galton.py   # Quantum circuit implementation
-│   └── classical_simulator.py  # Classical comparison
-├── ai/                     # AI models and training
-│   └── models.py          # Neural ODE and RNN models
-├── visualization/          # Beautiful plotting
-│   ├── plotter.py         # Main visualization class
-│   └── themes.py          # Color themes and styles
-└── utils/                  # Utilities and metrics
-    ├── metrics.py         # Statistical analysis
-    └── data_generation.py # Dataset generation
+Plinko-Dynamics/
+├── README.md                    # This file
+├── project_summary.md          # Deliverable 1: Technical summary
+├── quantum_galton_board.py     # Main quantum implementation
+├── latent_ode.py               # AI models and training
+├── ai_dataloader.py            # AI data generation
+├── ai_demo.py                  # AI integration demonstration
+├── demo_notebook.ipynb         # Original quantum demo
+├── ai_integration_notebook.ipynb # AI integration notebook
+├── demo_enhanced.py            # Enhanced demo with visualizations
+├── requirements.txt            # Project dependencies
+├── results/                    # Generated visualizations and models
+└── plinko_dynamics/            # Package structure
+    ├── core/                   # Core simulation engines
+    │   ├── quantum_galton.py   # Quantum circuit implementation
+    │   └── classical_simulator.py  # Classical comparison
+    ├── ai/                     # AI models and training
+    │   └── models.py          # Neural ODE and RNN models
+    ├── visualization/          # Beautiful plotting
+    │   ├── plotter.py         # Main visualization class
+    │   └── themes.py          # Color themes and styles
+    └── utils/                  # Utilities and metrics
+        ├── metrics.py         # Statistical analysis
+        └── data_generation.py # Dataset generation
 ```
 
 ### Key Components
@@ -135,12 +208,31 @@ plinko_dynamics/
 - Quantum advantage analysis
 - Time series evaluation
 
+## Scientific Applications
+
+### Monte Carlo Methods
+- **Particle Transport**: Quantum simulation of particle scattering
+- **Financial Modeling**: Risk assessment and option pricing  
+- **Statistical Physics**: Thermodynamic system simulations
+- **Materials Science**: Quantum material property prediction
+
+### Quantum Advantage
+- **Parallel Processing**: Superposition enables simultaneous path exploration
+- **Interference Effects**: Quantum interference enhances statistical sampling
+- **Scalability**: Potential exponential speedup for high-dimensional problems
+- **Entanglement**: Quantum correlations for complex system modeling
+
 ## Advanced Usage
 
 ### AI Trajectory Analysis
 
 ```python
 from plinko_dynamics import QuantumGaltonAI
+from ai_dataloader import generate_training_data
+from latent_ode import train_ai_on_galton_data
+
+# Generate training data
+dataset = generate_training_data(num_samples=50)
 
 # Initialize AI model
 ai_model = QuantumGaltonAI(
@@ -156,12 +248,18 @@ training_history = ai_model.train(
     time_steps=time_array,
     num_epochs=50
 )
+
+# Use AI for predictions
+import torch
+time_steps = torch.linspace(0, 1, 20)
+predicted_dist = ai_model.predict_distribution([3, 0.2*np.pi, 2.0], time_steps)
 ```
 
 ### Comprehensive Metrics Analysis
 
 ```python
 from plinko_dynamics.utils import DistributionMetrics
+from quantum_galton_board import calculate_distance_metrics
 
 # Quantum vs classical analysis
 analysis = DistributionMetrics.quantum_classical_analysis(
@@ -169,6 +267,15 @@ analysis = DistributionMetrics.quantum_classical_analysis(
     classical_dist=classical_distribution,
     theoretical_dist=theoretical_binomial
 )
+
+# Compare quantum vs classical distributions
+classical_dist, mse = qgb.compare_with_classical(distribution)
+metrics = calculate_distance_metrics(distribution, classical_dist, 1000)
+
+print(f"MSE: {metrics['mse']}")
+print(f"KL Divergence: {metrics['kl_divergence']}")
+print(f"TV Distance: {metrics['tv_distance']}")
+print(f"Chi-squared: {metrics['chi_squared']}")
 
 # Circuit performance comparison
 performance = DistributionMetrics.circuit_performance_metrics(
@@ -319,12 +426,30 @@ Check out these examples to get started:
 - [ ] Quantum hardware integration examples
 - [ ] Parameter optimization algorithms
 - [ ] Enhanced AI architectures
+- [ ] Noise model implementations for specific hardware
+- [ ] Advanced optimization algorithms
+- [ ] Interactive visualization tools
+- [ ] Benchmark comparisons with classical methods
 
 ### Version 3.0 (Future Vision)
 - [ ] Web-based interface
 - [ ] Distributed computing support
 - [ ] Advanced quantum error correction
 - [ ] Machine learning circuit design
+- [ ] Extended distribution types
+- [ ] IBM Quantum integration
+- [ ] Google Quantum AI integration
+- [ ] IonQ integration
+- [ ] Optimization for specific hardware topologies
+
+## Performance & Optimizations
+
+### Performance Optimizations
+- **Efficient circuit construction** for arbitrary layer counts
+- **Optimized measurement strategies** for reduced quantum resource usage
+- **Memory-efficient sample processing** for large-scale simulations
+- **AI-accelerated parameter optimization** for circuit design
+- **Parallel processing** support for batch simulations
 
 ## Performance Benchmarks
 
@@ -347,6 +472,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
+- **Womanium & WISER 2025 Quantum Program** - Platform and opportunity
+- **Universal Statistical Simulator research** by Mark Carney and Ben Varcoe
 - **PennyLane Team** - Excellent quantum computing framework
 - **PyTorch Team** - Deep learning infrastructure
 - **Matplotlib Team** - Visualization capabilities
@@ -362,11 +489,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Recognition
 
-This project demonstrates the elegant intersection of:
+Created as part of the Quantum Walks and Monte Carlo challenge, this project demonstrates the elegant intersection of:
 - **Quantum Computing** - Leveraging quantum superposition and interference
-- **Classical Physics** - Understanding statistical mechanics through Galton boards
+- **Classical Physics** - Understanding statistical mechanics through Galton boards  
 - **Artificial Intelligence** - Learning complex quantum dynamics
 - **Data Science** - Advanced statistical analysis and visualization
+- **Monte Carlo Methods** - Quantum approaches to statistical simulation
+
+This implementation showcases quantum Monte Carlo methods using the Galton board as a testbed for exploring quantum advantages in statistical simulation, with applications in particle transport, quantum systems, and high-dimensional statistical challenges.
 
 ---
 
