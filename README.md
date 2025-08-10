@@ -352,13 +352,6 @@ Check out these examples to get started:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
-
-- **PennyLane Team** - Excellent quantum computing framework
-- **PyTorch Team** - Deep learning infrastructure
-- **Matplotlib Team** - Visualization capabilities
-- **SciPy Community** - Statistical analysis tools
-- **Quantum Computing Community** - Inspiration and feedback
 
 ## Support & Contact
 
@@ -376,12 +369,6 @@ This project demonstrates the elegant intersection of:
 - **Data Science** - Advanced statistical analysis and visualization
 
 ---
-
-<div align="center">
-  <p><strong>Built for the quantum computing community</strong></p>
-  <p><em>Making quantum simulations beautiful, robust, and accessible</em></p>
-  
-  <br>
   
   <p><strong>If you find this project helpful, please consider giving it a star!</strong></p>
 </div>
