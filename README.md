@@ -6,6 +6,11 @@
 [![Status](https://img.shields.io/badge/Status-Active-brightgreen.svg)]()
 [![Womanium](https://img.shields.io/badge/Womanium-2025-purple.svg)]()
 
+## Team Members
+- **Sarah Rashidi**:  gst-Hp9AXRvC2Scd65A
+- **Elena Bresta**:   gst-uAhuv0ZAs1mBqiq
+- **Krishang Gupta**: gst-QwPcAHbHcHFGkF2
+
 **Advanced Quantum Galton Board Simulation with AI-Enhanced Analysis**
 
 A sophisticated, modular Python package implementing a quantum version of the Galton Board (Plinko) using quantum circuits to simulate complex statistical systems. This project demonstrates the Universal Statistical Simulator approach for quantum Monte Carlo problems, with potential applications in particle transport, quantum systems, and high-dimensional statistical challenges.
