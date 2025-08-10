@@ -23,7 +23,7 @@ This implementation addresses all 5 project deliverables for the Quantum Galton 
 
 ### 📊 [View Project Presentation](https://www.canva.com/design/DAGvrJaPse0/Muqw5_55QLHPp_oLwRpCEA/view?utm_content=DAGvrJaPse0&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hf72ad4484e)
 
-### Project Deliverables ✅
+### Project Deliverables 
 
 1. **Two-Page Summary Document**
    - File: `project_summary.md`
